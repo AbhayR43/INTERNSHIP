@@ -23,3 +23,23 @@ data_normalized <- rma(data)
 expression_values <- exprs(data_normalized)
 #Creat a box to check 
 boxplot(expression_values)
+# Analysis for gene expression changes
+# seperate treatment and control chips 
+Treatment <- apply(expression_values[,c("GSM4843.CEL", "GSM4844.CEL")], 1, log)
+Control <- apply(expression_values[,c("GSM4845.CEL", "GSM4846.CEL")], 1, log)
+#Get back the pervious data shape using function transpose
+Treatment <- t(Treatment)
+Control <- t(Control)
+rowMeans(Treatment)
+# Average for Treatment and Control
+Treatment_Mean <- rowMeans(Treatment)
+Control_Mean <- rowMeans(Control)
+#comparing treatment and control samples to check the up-regulated and down-regulated genes
+BIOMARKER gene signature
+Fold Chain Anaylsis
+Fold-Change <- Treatment - Control
+Treatment/control
+Fold_change <- Treatment-Control
+Fold_change <- Treatment_Mean-Control_Mean
+#Up-Regulated Genes > +1.5
+#Down- Regulated Genes > -1.5
